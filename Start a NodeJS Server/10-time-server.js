@@ -16,3 +16,24 @@
  *                                                                          *
  * After sending the string, close the connection.                          *
  ****************************************************************************/
+
+ var net = require('net');
+ function zeroPrefix(digit) {
+     if (digit < 10) {
+         return '0' + digit;
+     } else {
+         return digit;
+     }
+ }
+ function dateNow() {
+     var date = new Date();
+     return date.getFullYear() + '-' +
+         zeroPrefix(date.getMonth() + 1) + '-' +
+         zeroPrefix(date.getDate()) + ' ' +
+         zeroPrefix(date.getHours()) + ':' +
+         zeroPrefix(date.getMinutes());
+ }
+ var server = net.createServer(function(socket) {
+     socket.end(dateNow() + '\n');
+ });
+ server.listen(process.argv[2]);
