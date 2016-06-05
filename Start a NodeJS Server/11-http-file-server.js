@@ -13,3 +13,14 @@
 *  command-line argument. You must use the fs.createReadStream() method to   *
 *  stream the file contents to the response.                                 *
  *****************************************************************************/
+
+ var http = require('http');
+ var fs = require('fs');
+ var listenPort = process.argv[2];
+ var filePath = process.argv[3];
+
+ var server = http.createServer(function(req, res) {
+     fs.createReadStream(filePath).pipe(res);
+ });
+
+ server.listen(listenPort);
