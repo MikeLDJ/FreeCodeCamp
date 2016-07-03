@@ -8,10 +8,8 @@
 
 var express = require('express');
 var app = express();
-var path = require('path');
-var jade = require('jade');
 
-app.set('views', process.argv[3])
+app.set('views', process.argv[3]);
 app.set('view engine', 'jade');
 
 app.get('/home', function(req, res) {
